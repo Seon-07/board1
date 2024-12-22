@@ -3,7 +3,6 @@ package com.seon.board1.board.controller;
 import com.seon.board1.board.service.BoardService;
 import com.seon.board1.common.response.OperationResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,12 +21,12 @@ public class BoardRestController {
     @GetMapping
     public ResponseEntity<OperationResponse> getBoardService() {
         OperationResponse response = OperationResponse.operationResponse(boardService.getBoard());
-
         return new ResponseEntity<>(response, response.getStatus());
     }
 
     @PostMapping
-    public boolean insertBoard() {
-        return boardService.insertBoard();
+    public ResponseEntity<OperationResponse> insertBoard() {
+        OperationResponse response = OperationResponse.operationResponse(boardService.insertBoard());
+        return new ResponseEntity<>(response, response.getStatus());
     }
 }

@@ -30,7 +30,9 @@ public class OperationResponse {
         return new OperationResponse(new ResponseData<>(data), HttpStatus.OK, "SUCCESS");
     }
 
-    public static <T> OperationResponse operationResponse(T data, HttpStatus status, String message){
-        return new OperationResponse(new ResponseData<>(data), status, message);
+    public static OperationResponse operationResponse(boolean success){
+        HttpStatus status = success ? HttpStatus.OK : HttpStatus.INTERNAL_SERVER_ERROR;
+        String message = success ? "SUCCESS" : "FAIL";
+        return new OperationResponse(null, status, message);
     }
 }
