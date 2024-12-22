@@ -1,7 +1,9 @@
 package com.seon.board1.common.response;
 
+import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
+@Getter
 public class OperationResponse {
 
     private String message;
@@ -12,18 +14,6 @@ public class OperationResponse {
         this.data = data;
         this.status = status;
         this.message = message;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public HttpStatus getStatus() {
-        return status;
-    }
-
-    public ResponseData<?> getData() {
-        return data;
     }
 
     public static <T> OperationResponse operationResponse(T data){

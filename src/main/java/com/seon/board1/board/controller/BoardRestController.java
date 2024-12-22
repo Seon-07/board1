@@ -1,32 +1,33 @@
 package com.seon.board1.board.controller;
 
+import com.seon.board1.board.domain.Board;
+import com.seon.board1.board.dto.BoardReqDTO;
+import com.seon.board1.board.repository.BoardRepository;
 import com.seon.board1.board.service.BoardService;
 import com.seon.board1.common.response.OperationResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
 @RequestMapping("/board")
 public class BoardRestController {
 
-    @Autowired
-    private BoardService boardService;
+    private final BoardService boardService;
+    public BoardRestController(BoardService boardService) {
+        this.boardService = boardService;
+    }
 
     @GetMapping
-    public ResponseEntity<OperationResponse> getBoardService() {
-        OperationResponse response = OperationResponse.operationResponse(boardService.getBoard());
+    public ResponseEntity<OperationResponse> getBoardService(@RequestParam String id) {
+        OperationResponse response = OperationResponse.operationResponse(boardService.getBoard(id));
         return new ResponseEntity<>(response, response.getStatus());
     }
 
     @PostMapping
-    public ResponseEntity<OperationResponse> insertBoard() {
-        OperationResponse response = OperationResponse.operationResponse(boardService.insertBoard());
+    public ResponseEntity<OperationResponse> insertBoard(@RequestBody BoardReqDTO board) {
+        OperationResponse response = OperationResponse.operationResponse(boardService.insertBoard(board));
         return new ResponseEntity<>(response, response.getStatus());
     }
 }
