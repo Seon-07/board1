@@ -4,7 +4,6 @@ import com.seon.board1.board.domain.Board;
 import com.seon.board1.board.dto.BoardReqDTO;
 import com.seon.board1.board.dto.BoardResDTO;
 import com.seon.board1.board.repository.BoardRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

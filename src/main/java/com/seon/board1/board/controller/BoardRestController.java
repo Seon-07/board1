@@ -1,11 +1,8 @@
 package com.seon.board1.board.controller;
 
-import com.seon.board1.board.domain.Board;
 import com.seon.board1.board.dto.BoardReqDTO;
-import com.seon.board1.board.repository.BoardRepository;
 import com.seon.board1.board.service.BoardService;
 import com.seon.board1.common.response.OperationResponse;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
