@@ -7,6 +7,9 @@ import com.seon.board1.board.repository.BoardRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class BoardService {
 
@@ -33,5 +36,19 @@ public class BoardService {
         boardResDTO.setContent(board.getContent());
         boardResDTO.setAuthor(board.getAuthor());
         return boardResDTO;
+    }
+
+    public List<BoardResDTO> getBoardList(){
+        List<Board> boardList = boardRepository.findAll();
+        List<BoardResDTO> boardResDTOList = new ArrayList<>();
+        for(Board board : boardList){
+            BoardResDTO boardResDTO = new BoardResDTO();
+            boardResDTO.setId(board.getId());
+            boardResDTO.setTitle(board.getTitle());
+            boardResDTO.setContent(board.getContent());
+            boardResDTO.setAuthor(board.getAuthor());
+            boardResDTOList.add(boardResDTO);
+        }
+        return boardResDTOList;
     }
 }

@@ -16,8 +16,15 @@ public class BoardRestController {
         this.boardService = boardService;
     }
 
+    @GetMapping("/list")
+    public ResponseEntity<OperationResponse> getBoardList() {
+        OperationResponse response = OperationResponse.operationResponse(boardService.getBoardList());
+        return new ResponseEntity<>(response, response.getStatus());
+    }
+
+
     @GetMapping
-    public ResponseEntity<OperationResponse> getBoardService(@RequestParam String id) {
+    public ResponseEntity<OperationResponse> getBoard(@RequestParam String id) {
         OperationResponse response = OperationResponse.operationResponse(boardService.getBoard(id));
         return new ResponseEntity<>(response, response.getStatus());
     }
