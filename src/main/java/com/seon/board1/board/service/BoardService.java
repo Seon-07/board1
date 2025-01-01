@@ -3,6 +3,7 @@ package com.seon.board1.board.service;
 import com.seon.board1.board.domain.Board;
 import com.seon.board1.board.dto.BoardReqDTO;
 import com.seon.board1.board.dto.BoardResDTO;
+import com.seon.board1.board.dto.UpdateBoardReqDTO;
 import com.seon.board1.board.repository.BoardRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,6 +22,17 @@ public class BoardService {
     @Transactional(rollbackFor = Exception.class)
     public boolean insertBoard(BoardReqDTO boardReqDTO) {
         Board board = new Board();
+        board.setTitle(boardReqDTO.getTitle());
+        board.setContent(boardReqDTO.getContent());
+        board.setAuthor(boardReqDTO.getAuthor());
+        boardRepository.save(board);
+        return true;
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    public boolean updateBoard(UpdateBoardReqDTO boardReqDTO) {
+        Board board = new Board();
+        board.setId(boardReqDTO.getId());
         board.setTitle(boardReqDTO.getTitle());
         board.setContent(boardReqDTO.getContent());
         board.setAuthor(boardReqDTO.getAuthor());

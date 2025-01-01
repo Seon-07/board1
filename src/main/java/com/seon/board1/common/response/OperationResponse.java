@@ -1,28 +1,24 @@
 package com.seon.board1.common.response;
 
-import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
-@Getter
 public class OperationResponse {
+    private OperationResponse(){};
 
-    private String message;
-    private HttpStatus status;
-    private ResponseData<?> data ;
-
-    private OperationResponse(ResponseData<?> data, HttpStatus status, String message) {
-        this.data = data;
-        this.status = status;
-        this.message = message;
+    public static <T> ContentResult<T> contentResult(T data) {
+        return new ContentResult<>(data, HttpStatus.OK, "SUCCESS");
+    }
+    public static <T> ContentResult<T> contentResult(T data, HttpStatus status, String message) {
+        return new ContentResult<>(data, status, message);
     }
 
-    public static <T> OperationResponse operationResponse(T data){
-        return new OperationResponse(new ResponseData<>(data), HttpStatus.OK, "SUCCESS");
+    public static OperationResult operationResult(boolean operation) {
+        HttpStatus status = operation ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
+        String message = operation ? "SUCCESS" : "FAIL";
+        return new OperationResult(status, message);
     }
 
-    public static OperationResponse operationResponse(boolean success){
-        HttpStatus status = success ? HttpStatus.OK : HttpStatus.INTERNAL_SERVER_ERROR;
-        String message = success ? "SUCCESS" : "FAIL";
-        return new OperationResponse(null, status, message);
+    public static OperationResult operationResult(HttpStatus status, String message) {
+        return new OperationResult(status, message);
     }
 }
