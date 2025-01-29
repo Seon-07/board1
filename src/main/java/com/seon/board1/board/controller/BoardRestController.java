@@ -43,8 +43,8 @@ public class BoardRestController {
     }
 
     @PostMapping("/update")
-    public ResponseEntity<OperationResult> updateBoard(@RequestBody UpdateBoardReqDTO updateBoard) {
-        OperationResult response = OperationResponse.operationResult(boardService.updateBoard(updateBoard));
+    public ResponseEntity<OperationResult> updateBoard(@RequestBody UpdateBoardReqDTO updateboard) {
+        OperationResult response = OperationResponse.operationResult(boardService.updateBoard(updateboard));
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }
