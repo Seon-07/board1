@@ -11,14 +11,31 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 게시글 서비스 클래스
+ * @author SEON
+ * @version 1.0
+ * @Class BoardService
+ * @since 25. 2. 5.
+ */
 @Service
 public class BoardService {
 
+    /**
+     * 레포지토리 주입
+     */
     private final BoardRepository boardRepository;
     public BoardService(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
     }
 
+    /**
+     * 게시글 등록 서비스
+     * @param boardReqDTO 등록할 게시글 객체
+     * @return boolean
+     * @author SEON
+     * @since 25. 2. 5.
+     */
     @Transactional(rollbackFor = Exception.class)
     public boolean insertBoard(BoardReqDTO boardReqDTO) {
         Board board = new Board();
@@ -29,6 +46,13 @@ public class BoardService {
         return true;
     }
 
+    /**
+     * 게시글 수정 서비스
+     * @param boardReqDTO 수정할 게시글 객체
+     * @return boolean
+     * @author SEON
+     * @since 25. 2. 5.
+     */
     @Transactional(rollbackFor = Exception.class)
     public boolean updateBoard(UpdateBoardReqDTO boardReqDTO) {
         Board board = new Board();
@@ -40,6 +64,13 @@ public class BoardService {
         return true;
     }
 
+    /**
+     * 게시글 조회 서비스
+     * @param id 조회할 게시글 기본키
+     * @return BoardResDTO
+     * @author SEON
+     * @since 25. 2. 5.
+     */
     public BoardResDTO getBoard(String id){
         Board board = boardRepository.findById(id).orElseThrow(() -> new RuntimeException("Board not found"));
         BoardResDTO boardResDTO = new BoardResDTO();
@@ -50,6 +81,12 @@ public class BoardService {
         return boardResDTO;
     }
 
+    /**
+     * 게시글 리스트 조회 서비스
+     * @return List<BoardResDTO>
+     * @author SEON
+     * @since 25. 2. 5.
+     */
     public List<BoardResDTO> getBoardList(){
         List<Board> boardList = boardRepository.findAll();
         List<BoardResDTO> boardResDTOList = new ArrayList<>();
