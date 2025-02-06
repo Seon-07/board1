@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * 게시글 컨트롤러
@@ -71,6 +72,18 @@ public class BoardRestController {
     }
 
     /**
+     * 게시글 삭제 컨트롤러
+     * @param id 삭제할 게시글의 기본키
+     * @return ResponseEntity<OperationResult>
+     * @author SEON
+     * @since 25. 2. 6.
+     */
+    @PostMapping("/delete")
+    public ResponseEntity<OperationResult> deleteBoard(@RequestParam String id) {
+        OperationResult response = OperationResponse.operationResult(boardService.deleteBoard(id));
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+    /**
      * 게시글 수정 컨트롤러
      * @param updateBoard 수정할 게시글 객체
      * @return ResponseEntity<OperationResult>
@@ -82,4 +95,6 @@ public class BoardRestController {
         OperationResult response = OperationResponse.operationResult(boardService.updateBoard(updateBoard));
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
+
 }

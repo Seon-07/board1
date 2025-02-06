@@ -5,11 +5,12 @@ import com.seon.board1.board.dto.BoardReqDTO;
 import com.seon.board1.board.dto.BoardResDTO;
 import com.seon.board1.board.dto.UpdateBoardReqDTO;
 import com.seon.board1.board.repository.BoardRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * 게시글 서비스 클래스
@@ -36,7 +37,7 @@ public class BoardService {
      * @author SEON
      * @since 25. 2. 5.
      */
-    @Transactional(rollbackFor = Exception.class)
+    @Transactional
     public boolean insertBoard(BoardReqDTO boardReqDTO) {
         Board board = new Board();
         board.setTitle(boardReqDTO.getTitle());
@@ -47,13 +48,25 @@ public class BoardService {
     }
 
     /**
+     * 게시글 소프트 삭제
+     * @param id 게시글의 기본키
+     * @return boolean
+     * @author SEON
+     * @since 25. 2. 6.
+     */
+    @Transactional
+    public boolean deleteBoard(String id) {
+        return boardRepository.deleteBoardById(id) == 1;
+    }
+
+    /**
      * 게시글 수정 서비스
      * @param boardReqDTO 수정할 게시글 객체
      * @return boolean
      * @author SEON
      * @since 25. 2. 5.
      */
-    @Transactional(rollbackFor = Exception.class)
+    @Transactional
     public boolean updateBoard(UpdateBoardReqDTO boardReqDTO) {
         Board board = new Board();
         board.setId(boardReqDTO.getId());

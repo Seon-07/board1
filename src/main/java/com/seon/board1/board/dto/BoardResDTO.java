@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.UUID;
+
 /**
  * 게시글 조회할때 반환하는 객체
  * @author SEON
@@ -28,4 +30,7 @@ public class BoardResDTO {
 
     /** 게시글 작성자 */
     private String author;
+
+    /** 게시글 사용여부 */
+    private String useYn;
 }

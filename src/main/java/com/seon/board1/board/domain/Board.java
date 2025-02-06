@@ -1,8 +1,7 @@
 package com.seon.board1.board.domain;
 
 import com.seon.board1.common.util.Base64Util;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,22 +21,21 @@ public class Board {
 
     /** 게시글 기본키 */
     @Id
-    private String id;
+    private String id = UUID.randomUUID().toString();
 
     /** 게시글 제목 */
+    @Column(nullable = false, length = 200)
     private String title;
 
     /** 게시글 내용 */
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String content;
 
     /** 게시글 작성자 */
+    @Column(nullable = false, length = 20)
     private String author;
 
-    /**
-     * 게시글 생성자
-     * 객체 생성 시 id
-     */
-    public Board(){
-        this.id = Base64Util.encodeBase64(UUID.randomUUID().toString());
-    }
+    /** 게시글 사용여부 */
+    @Column(nullable = false, length = 1)
+    private String useYN = "Y";
 }
