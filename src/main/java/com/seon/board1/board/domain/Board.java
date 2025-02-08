@@ -37,5 +37,5 @@ public class Board {
 
     /** 게시글 사용여부 */
     @Column(nullable = false, length = 1)
-    private String useYN = "Y";
+    private String useYn = "Y";
 }

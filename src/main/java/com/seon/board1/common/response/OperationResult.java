@@ -6,8 +6,8 @@ import org.springframework.http.HttpStatus;
 @Getter
 public class OperationResult {
 
-    private String message;
-    private HttpStatus status;
+    private final String message;
+    private final HttpStatus status;
 
     public OperationResult(HttpStatus status, String message) {
         this.status = status;

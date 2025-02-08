@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import java.util.UUID;
+import java.util.List;
 
 /**
  * 게시글 레포지토리
@@ -26,6 +26,15 @@ public interface BoardRepository extends JpaRepository<Board, String> {
      * @since 25. 2. 6.
      */
     @Modifying
-    @Query("UPDATE Board b SET b.useYN = 'N' WHERE b.id = :id")
+    @Query("UPDATE Board b SET b.useYn = 'N' WHERE b.id = :id")
     int deleteBoardById(String id);
+
+    /**
+     * 게시글 리스트 조회
+     * @return List<Board> useYn이 Y인 Board
+     * @author SEON
+     * @since 25. 2. 8.
+     */
+    @Query("SELECT b FROM Board b WHERE b.useYn = 'Y'")
+    List<Board> findBoardList();
 }

@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * 게시글 서비스 클래스
@@ -22,9 +21,6 @@ import java.util.UUID;
 @Service
 public class BoardService {
 
-    /**
-     * 레포지토리 주입
-     */
     private final BoardRepository boardRepository;
     public BoardService(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
@@ -101,7 +97,7 @@ public class BoardService {
      * @since 25. 2. 5.
      */
     public List<BoardResDTO> getBoardList(){
-        List<Board> boardList = boardRepository.findAll();
+        List<Board> boardList = boardRepository.findBoardList();
         List<BoardResDTO> boardResDTOList = new ArrayList<>();
         for(Board board : boardList){
             BoardResDTO boardResDTO = new BoardResDTO();
