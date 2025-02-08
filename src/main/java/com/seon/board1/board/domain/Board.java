@@ -24,18 +24,18 @@ public class Board {
     private String id = UUID.randomUUID().toString();
 
     /** 게시글 제목 */
-    @Column(nullable = false, length = 200)
+    @Column(name = "TITLE", nullable = false, length = 200)
     private String title;
 
     /** 게시글 내용 */
-    @Column(nullable = false, columnDefinition = "TEXT")
+    @Column(name = "CONTENT", nullable = false, columnDefinition = "TEXT")
     private String content;
 
     /** 게시글 작성자 */
-    @Column(nullable = false, length = 20)
+    @Column(name = "AUTHOR", nullable = false, length = 20)
     private String author;
 
     /** 게시글 사용여부 */
-    @Column(nullable = false, length = 1)
+    @Column(name = "USE_YN", nullable = false, length = 1)
     private String useYn = "Y";
 }

@@ -30,7 +30,4 @@ public class BoardResDTO {
 
     /** 게시글 작성자 */
     private String author;
-
-    /** 게시글 사용여부 */
-    private String useYn;
 }

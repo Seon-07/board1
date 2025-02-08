@@ -3,7 +3,7 @@ package com.seon.board1.common.response;
 import org.springframework.http.HttpStatus;
 
 public class OperationResponse {
-    private OperationResponse(){}ㄴ
+    private OperationResponse(){}
 
     public static <T> ContentResult<T> contentResult(T data) {
         return new ContentResult<>(data, HttpStatus.OK, "SUCCESS");
