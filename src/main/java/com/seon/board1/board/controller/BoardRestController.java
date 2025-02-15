@@ -2,6 +2,7 @@ package com.seon.board1.board.controller;
 
 import com.seon.board1.board.dto.BoardReqDTO;
 import com.seon.board1.board.dto.BoardResDTO;
+import com.seon.board1.board.dto.DeleteBoardReqDTO;
 import com.seon.board1.board.dto.UpdateBoardReqDTO;
 import com.seon.board1.board.service.BoardService;
 import com.seon.board1.common.response.ContentResult;
@@ -73,14 +74,14 @@ public class BoardRestController {
 
     /**
      * 게시글 삭제 컨트롤러
-     * @param id 삭제할 게시글의 기본키
+     * @param deleteBoardReqDTO 삭제할 게시글의 객체
      * @return ResponseEntity<OperationResult>
      * @author SEON
      * @since 25. 2. 6.
      */
     @PostMapping("/delete")
-    public ResponseEntity<OperationResult> deleteBoard(@RequestParam String id) {
-        OperationResult response = OperationResponse.operationResult(boardService.deleteBoard(id));
+    public ResponseEntity<OperationResult> deleteBoard(@RequestBody DeleteBoardReqDTO deleteBoardReqDTO) {
+        OperationResult response = OperationResponse.operationResult(boardService.deleteBoard(deleteBoardReqDTO));
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
     /**

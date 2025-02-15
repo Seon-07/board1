@@ -3,6 +3,7 @@ package com.seon.board1.board.service;
 import com.seon.board1.board.domain.Board;
 import com.seon.board1.board.dto.BoardReqDTO;
 import com.seon.board1.board.dto.BoardResDTO;
+import com.seon.board1.board.dto.DeleteBoardReqDTO;
 import com.seon.board1.board.dto.UpdateBoardReqDTO;
 import com.seon.board1.board.repository.BoardRepository;
 import jakarta.transaction.Transactional;
@@ -45,13 +46,14 @@ public class BoardService {
 
     /**
      * 게시글 소프트 삭제
-     * @param id 게시글의 기본키
+     * @param deleteBoardReqDTO 삭제할 게시글 객체
      * @return boolean
      * @author SEON
      * @since 25. 2. 6.
      */
     @Transactional
-    public boolean deleteBoard(String id) {
+    public boolean deleteBoard(DeleteBoardReqDTO deleteBoardReqDTO) {
+        String id = deleteBoardReqDTO.getId();
         return boardRepository.deleteBoardById(id) == 1;
     }
 
