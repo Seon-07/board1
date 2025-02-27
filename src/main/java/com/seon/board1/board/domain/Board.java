@@ -1,7 +1,8 @@
 package com.seon.board1.board.domain;
 
-import com.seon.board1.common.util.Base64Util;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 

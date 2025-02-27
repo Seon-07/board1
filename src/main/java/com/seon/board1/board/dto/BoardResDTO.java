@@ -1,11 +1,9 @@
 package com.seon.board1.board.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.UUID;
+import java.io.Serializable;
 
 /**
  * 게시글 조회할때 반환하는 객체
@@ -14,11 +12,9 @@ import java.util.UUID;
  * @Class BoardResDTO
  * @since 25. 2. 5.
  */
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
-public class BoardResDTO {
+public class BoardResDTO{
     /** 게시글 기본키 */
     private String id;
 
