@@ -54,7 +54,6 @@ public class BoardService {
      * @author SEON
      * @since 25. 2. 6.
      */
-    @CacheEvict(value = "board", key = "#deleteBoardReqDTO.id")
     @Transactional
     public boolean deleteBoard(DeleteBoardReqDTO deleteBoardReqDTO) {
         String id = deleteBoardReqDTO.getId();
@@ -68,7 +67,6 @@ public class BoardService {
      * @author SEON
      * @since 25. 2. 5.
      */
-    @CachePut(value = "board", key = "#boardReqDTO.id")
     @Transactional
     public boolean updateBoard(UpdateBoardReqDTO boardReqDTO) {
         Board board = new Board();
@@ -87,7 +85,6 @@ public class BoardService {
      * @author SEON
      * @since 25. 2. 5.
      */
-    @Cacheable(value = "board", key = "#id")
     public BoardResDTO getBoard(String id){
         Board board = boardRepository.findById(id).orElseThrow(() -> new RuntimeException("Board not found"));
         BoardResDTO boardResDTO = new BoardResDTO();
